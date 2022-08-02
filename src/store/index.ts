@@ -6,9 +6,10 @@ import storage from "redux-persist/lib/storage";
 import rootReducer from "./modules/rootReducer";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./modules/rootSaga";
+import { ProductsState } from "./modules/products/types";
 export interface IState {
   user: UserProps;
-  products: any;
+  products: ProductsState;
 }
 
 const sagaMiddleware = createSagaMiddleware();

@@ -21,8 +21,6 @@ export function CMSTemplate({ children }: ICMSTemplate) {
     dispatch(signOutRequest());
   };
 
-  console.log(pathname);
-
   return (
     <Flex w="100vw" h="100vh" bg="#3F72AF" justifyContent="space-between">
       <Flex

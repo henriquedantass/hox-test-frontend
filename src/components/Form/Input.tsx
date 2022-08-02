@@ -19,14 +19,14 @@ import { BiErrorCircle } from "react-icons/bi";
 interface InputProps extends ChakraInputProps {
   name: string;
   label?: string;
-  error: FieldError | any;
+  error?: FieldError | any;
   tip?: string;
   labelColor?: string;
   icon?: any;
 }
 
 const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
-  { name, icon, label, labelColor, tip, error = null, ...rest },
+  { name, icon, label, labelColor = "#fff", tip, error = null, ...rest },
   ref
 ) => {
   return (
