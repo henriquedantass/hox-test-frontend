@@ -1,10 +1,25 @@
-import { LoginCredentials } from "./types";
+import { LoginAPISignIn, LoginCredentials, UserActions } from "./types";
 
-export function signIn(credentials: LoginCredentials) {
+export function signInRequest(credentials: LoginCredentials) {
   return {
-    type: "USER_SIGN_IN",
+    type: UserActions.signInRequest,
     payload: {
       credentials,
     },
+  };
+}
+
+export function signInSuccess(response: LoginAPISignIn) {
+  return {
+    type: UserActions.signInSuccess,
+    payload: {
+      response,
+    },
+  };
+}
+export function signInFailure() {
+  return {
+    type: UserActions.signInFailure,
+    payload: {},
   };
 }

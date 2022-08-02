@@ -1,7 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import { Reducer } from "redux";
 import { api } from "../../../services/api";
-import { UserProps } from "./types";
+import { Reducer } from "redux";
+import { UserActions, UserProps } from "./types";
 
 const initialState = {
   data: {},
@@ -14,18 +13,13 @@ const setDefaultsHeaders = (token: string) => {
 
 const user: Reducer<UserProps> = (state = initialState, action) => {
   switch (action.type) {
-    case "USER_SIGN_IN": {
-      const { credentials } = action.payload;
+    case UserActions.signInSuccess: {
+      const { user, accessToken } = action.payload.response;
 
-      api.post("/login", credentials).then((response) => {
-        const { accessToken } = response.data;
-        setDefaultsHeaders(accessToken);
-      });
+      setDefaultsHeaders(accessToken);
 
       return {
-        data: {
-          username: credentials.email,
-        },
+        data: user,
         isLoggedIn: true,
       };
     }

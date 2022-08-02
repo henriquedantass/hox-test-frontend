@@ -7,7 +7,7 @@ import { MdLock, MdPerson } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { signIn } from "../store/modules/user/actions";
+import { signInRequest } from "../store/modules/user/actions";
 
 const signInFormSchema = yup.object().shape({
   email: yup.string().required("E-mail obrigatório"),
@@ -27,7 +27,7 @@ export function LoginPage() {
   });
 
   const handleSignIn: SubmitHandler<any> = (data) => {
-    dispatch(signIn(data));
+    dispatch(signInRequest(data));
     navigate("../home", { replace: true });
   };
 
