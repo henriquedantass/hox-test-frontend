@@ -4,10 +4,10 @@ import { Button } from "../components/Button";
 import { Input } from "../components/Form/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { MdLock, MdPerson } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
-import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { signInRequest } from "../store/modules/user/actions";
+import { IState } from "../store";
+import * as yup from "yup";
 
 const signInFormSchema = yup.object().shape({
   email: yup.string().required("E-mail obrigatório"),
@@ -15,7 +15,9 @@ const signInFormSchema = yup.object().shape({
 });
 
 export function LoginPage() {
-  const navigate = useNavigate();
+  const errorOnLoggin = useSelector<IState, boolean>(
+    (state) => state.user.logginFailed
+  );
   const dispatch = useDispatch();
 
   const {
@@ -72,6 +74,11 @@ export function LoginPage() {
           <Button isLoading={isSubmitting} type="submit">
             Entrar
           </Button>
+          {errorOnLoggin && (
+            <Text mt="50px" fontWeight="bold" color="#F05454">
+              Credenciais inválidas
+            </Text>
+          )}
         </Flex>
       </Flex>
     </div>

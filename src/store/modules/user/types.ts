@@ -16,6 +16,7 @@ type User = {
 export interface UserProps {
   data?: User;
   isLoggedIn: boolean;
+  logginFailed: boolean;
 }
 
 export interface LoginCredentials {

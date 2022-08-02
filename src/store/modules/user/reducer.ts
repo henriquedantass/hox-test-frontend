@@ -5,6 +5,7 @@ import { UserActions, UserProps } from "./types";
 const initialState = {
   data: {},
   isLoggedIn: false,
+  logginFailed: false,
 } as UserProps;
 
 const setDefaultsHeaders = (token: string) => {
@@ -22,6 +23,14 @@ const user: Reducer<UserProps> = (state = initialState, action) => {
       return {
         data: user,
         isLoggedIn: true,
+        logginFailed: false,
+      };
+    }
+
+    case UserActions.signInFailure: {
+      return {
+        ...state,
+        logginFailed: true,
       };
     }
 
@@ -31,6 +40,7 @@ const user: Reducer<UserProps> = (state = initialState, action) => {
       window.location.href = "http://localhost:5173/login";
 
       return {
+        ...state,
         data: undefined,
         isLoggedIn: false,
       };
