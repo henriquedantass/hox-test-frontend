@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../store/modules/user/actions";
 
 const signInFormSchema = yup.object().shape({
-  username: yup.string().required("Username obrigatório"),
+  email: yup.string().required("E-mail obrigatório"),
   password: yup.string().required("Senha obrigatória"),
 });
 
@@ -56,10 +56,10 @@ export function LoginPage() {
           <Stack w="100%" spacing="20px">
             <Input
               icon={<MdPerson />}
-              label="Usuário"
-              placeholder="digite seu usuário aqui"
-              {...register("username")}
-              error={errors.username}
+              label="E-mail"
+              placeholder="digite seu e-mail aqui"
+              {...register("email")}
+              error={errors.email}
             />
             <Input
               icon={<MdLock />}

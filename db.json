@@ -1,0 +1,19 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Produto 1",
+      "perishable": false,
+      "manufacturing_date": "2021-12-21T16:11:37Z",
+      "due_date": "2022-06-19T14:25:23Z",
+      "price:": 200
+    }
+  ],
+  "users": [
+    {
+      "email": "develop@hotmail.com",
+      "password": "$2a$10$gZY0suz6cBawSWNrlfUHpuSmk8/xK5LIZ/NVg5097fGMkjqyqFrH6",
+      "id": 1
+    }
+  ]
+}
