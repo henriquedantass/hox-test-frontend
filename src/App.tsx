@@ -12,8 +12,8 @@ export const App = () => {
         <Route path="*" element={<NotFound />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<ProtectedRoute />}>
-          <Route path="/home" element={<Home />} />
-          <Route path="/home/products" element={<Products />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -4,13 +4,14 @@ import { IconType } from "react-icons";
 interface ICMSItem extends FlexProps {
   title: string;
   icon: IconType;
+  isSelected?: boolean;
 }
 
-export const CMSItem = ({ icon, title, ...rest }: ICMSItem) => {
+export const CMSItem = ({ icon, title, isSelected, ...rest }: ICMSItem) => {
   return (
     <Flex
       fontSize="1.2rem"
-      color="#F9F7F7"
+      color={isSelected ? "#E8AA42" : "#F9F7F7"}
       alignItems="center"
       gap="0px 10px"
       cursor="pointer"

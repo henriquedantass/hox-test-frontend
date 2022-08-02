@@ -14,13 +14,25 @@ const setDefaultsHeaders = (token: string) => {
 const user: Reducer<UserProps> = (state = initialState, action) => {
   switch (action.type) {
     case UserActions.signInSuccess: {
-      const { user, accessToken } = action.payload.response;
+      const { user, accessToken } = action.payload.response.data;
 
       setDefaultsHeaders(accessToken);
+      window.location.href = "http://localhost:5173";
 
       return {
         data: user,
         isLoggedIn: true,
+      };
+    }
+
+    case UserActions.signOutRequest: {
+      setDefaultsHeaders("");
+
+      window.location.href = "http://localhost:5173/login";
+
+      return {
+        data: undefined,
+        isLoggedIn: false,
       };
     }
     default: {

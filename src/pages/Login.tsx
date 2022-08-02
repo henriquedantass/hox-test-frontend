@@ -28,7 +28,6 @@ export function LoginPage() {
 
   const handleSignIn: SubmitHandler<any> = (data) => {
     dispatch(signInRequest(data));
-    navigate("../home", { replace: true });
   };
 
   return (

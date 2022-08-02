@@ -23,3 +23,17 @@ export function signInFailure() {
     payload: {},
   };
 }
+
+export function signOutRequest() {
+  return {
+    type: UserActions.signOutRequest,
+    payload: {},
+  };
+}
+
+export function signOutSuccess() {
+  return {
+    type: UserActions.signInSuccess,
+    payload: {},
+  };
+}

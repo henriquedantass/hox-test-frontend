@@ -4,6 +4,8 @@ export enum UserActions {
   signInRequest = "SIGN_IN_REQUEST",
   signInSuccess = "SIGN_IN_SUCCESS",
   signInFailure = "SIGN_IN_FAILURE",
+  signOutRequest = "SIGN_OUT_REQUEST",
+  signOutSuccess = "SIGN_OUT_SUCCESS",
 }
 
 type User = {
@@ -12,7 +14,7 @@ type User = {
 };
 
 export interface UserProps {
-  data: User;
+  data?: User;
   isLoggedIn: boolean;
 }
 
@@ -21,9 +23,9 @@ export interface LoginCredentials {
   password: string;
 }
 
-export type LoginAPISignIn = Promise<
-  AxiosResponse<{
-    acessToken: string;
-    user: User;
-  }>
->;
+export type LoginAPIResponse = {
+  acessToken: string;
+  user: User;
+};
+
+export type LoginAPISignIn = Promise<AxiosResponse<LoginAPIResponse>>;
