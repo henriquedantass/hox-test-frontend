@@ -1,27 +1,25 @@
 {
   "products": [
     {
-      "perishable": true,
-      "due_date": "2022-08-26T03:00:00.000Z",
-      "manufacturing_date": "2022-08-20T03:00:00.000Z",
-      "price": 200,
-      "name": "Teste editado",
+      "perishable": false,
+      "manufacturing_date": "2022-08-12T03:00:00.000Z",
+      "price": 12312,
+      "name": "Henriquera",
       "id": 1
     },
     {
-      "perishable": true,
-      "due_date": "2023-06-28T03:00:00.000Z",
-      "manufacturing_date": "2022-08-06T03:00:00.000Z",
-      "price": 100,
-      "name": "Teste 2 ",
+      "perishable": false,
+      "manufacturing_date": "2022-08-13T03:00:00.000Z",
+      "price": 11122,
+      "name": "wqeqw",
       "id": 2
     },
     {
-      "perishable": false,
-      "due_date": "",
+      "perishable": true,
+      "due_date": "2022-08-27T03:00:00.000Z",
       "manufacturing_date": "2022-08-13T03:00:00.000Z",
-      "price": 9000,
-      "name": "Teste 4 ",
+      "price": 300,
+      "name": "qweqwewq",
       "id": 3
     }
   ],

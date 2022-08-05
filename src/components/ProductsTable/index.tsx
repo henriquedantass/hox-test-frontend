@@ -21,10 +21,6 @@ interface IProductsTable {
 }
 
 export const ProductsTable = ({ data, onDelete, onEdit }: IProductsTable) => {
-  function formatDate(date: string) {
-    return format(new Date(date), "MM/dd/yyyy");
-  }
-
   return (
     <TableContainer
       mt="20px"
@@ -49,11 +45,13 @@ export const ProductsTable = ({ data, onDelete, onEdit }: IProductsTable) => {
           {data.map((product) => (
             <Tr key={product.id}>
               <Td>{product.name}</Td>
-              <Td>{formatDate(product.manufacturing_date)}</Td>
               <Td>
-                {product.due_date === ""
-                  ? "Sem validade"
-                  : formatDate(product.due_date)}
+                {format(new Date(product.manufacturing_date), "yyyy-dd-mm")}
+              </Td>
+              <Td>
+                {product.due_date
+                  ? format(new Date(product.due_date), "yyyy-dd-mm")
+                  : "sem validade"}
               </Td>
               <Td>{product.perishable ? "Sim" : "Não"}</Td>
               <Td>{formatPrice(product.price)}</Td>
