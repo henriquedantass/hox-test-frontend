@@ -38,3 +38,21 @@ export function createProductSuccess(response: CreateProductAPIDTO) {
     },
   };
 }
+
+export function deleteProductRequest(productId: number) {
+  return {
+    type: ProductsActions.deleteProductRequest,
+    payload: {
+      productId,
+    },
+  };
+}
+
+export function deleteProductSuccess(productId: number) {
+  return {
+    type: ProductsActions.deleteProductSuccess,
+    payload: {
+      productId,
+    },
+  };
+}

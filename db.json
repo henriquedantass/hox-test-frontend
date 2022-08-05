@@ -18,62 +18,6 @@
     },
     {
       "perishable": false,
-      "due_date": "",
-      "manufacturing_date": "2022-08-02",
-      "price": 222,
-      "name": "Teste",
-      "id": 3
-    },
-    {
-      "perishable": false,
-      "due_date": "",
-      "manufacturing_date": "2022-08-13",
-      "price": 9000,
-      "name": "Teste",
-      "id": 4
-    },
-    {
-      "perishable": false,
-      "due_date": "",
-      "manufacturing_date": "2022-08-06",
-      "price": 200,
-      "name": "Henriquera",
-      "id": 5
-    },
-    {
-      "perishable": false,
-      "due_date": "",
-      "manufacturing_date": "2022-08-20",
-      "price": 222222,
-      "name": "qweqwewq",
-      "id": 6
-    },
-    {
-      "perishable": false,
-      "due_date": "",
-      "manufacturing_date": "2022-08-06",
-      "price": 200,
-      "name": "novooo",
-      "id": 7
-    },
-    {
-      "perishable": false,
-      "due_date": "",
-      "manufacturing_date": "2022-08-06",
-      "price": 200,
-      "name": "wwwww",
-      "id": 8
-    },
-    {
-      "perishable": false,
-      "due_date": "",
-      "manufacturing_date": "2022-08-06",
-      "price": 400,
-      "name": "Henriquera",
-      "id": 9
-    },
-    {
-      "perishable": false,
       "due_date": "2030-01-06",
       "manufacturing_date": "2000-08-06",
       "price": 200,

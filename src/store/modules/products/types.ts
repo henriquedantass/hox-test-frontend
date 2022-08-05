@@ -3,14 +3,14 @@ import { AxiosResponse } from "axios";
 export enum ProductsActions {
   getProductsRequest = "GET_PRODUCTS_REQUEST",
   getProductsSuccess = "GET_PRODUCTS_SUCCESS",
-  getProductsFailure = "GET_PRODUCTS_FAILURE",
   createProductsRequest = "CREATE_PRODUCT_REQUEST",
   createProductsSuccess = "CREATE_PRODUCT_SUCCESS",
-  createProductsFailure = "CREATE_PRODUCT_FAILURE",
+  deleteProductRequest = "DELETE_PRODUCT_REQUEST",
+  deleteProductSuccess = "DELETE_PRODUCT_SUCCESS",
 }
 
 export type ProductData = {
-  id?: number;
+  id: number;
   name: string;
   perishable: boolean;
   manufacturing_date: string;
@@ -34,3 +34,5 @@ export type CreateProductAPIDTO = Promise<
     data: ProductData;
   }>
 >;
+
+export type DeleteProductAPIDTO = Promise<AxiosResponse>;

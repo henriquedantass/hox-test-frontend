@@ -13,6 +13,9 @@ import { MdEdit } from "react-icons/md";
 import { ProductData } from "../../store/modules/products/types";
 import { formatPrice } from "../../utils/Formats";
 import { format } from "date-fns";
+import { useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { deleteProductRequest } from "../../store/modules/products/actions";
 
 interface IProductsTable {
   data: ProductData[];
@@ -22,6 +25,12 @@ export const ProductsTable = ({ data }: IProductsTable) => {
   function formatDate(date: string) {
     return format(new Date(date), "MM/dd/yyyy");
   }
+
+  const dispatch = useDispatch();
+
+  const handleDeleteProduct = useCallback((productId: number) => {
+    dispatch(deleteProductRequest(productId));
+  }, []);
 
   return (
     <TableContainer
@@ -61,6 +70,7 @@ export const ProductsTable = ({ data }: IProductsTable) => {
                   _hover={{ opacity: 0.5 }}
                   m="0px 20px"
                   as={BiTrash}
+                  onClick={() => handleDeleteProduct(product.id)}
                 />
                 <Icon cursor="pointer" _hover={{ opacity: 0.5 }} as={MdEdit} />
               </Td>

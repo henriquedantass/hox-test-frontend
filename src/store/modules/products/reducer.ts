@@ -26,6 +26,16 @@ const products: Reducer<ProductsState> = (state = initialState, action) => {
       };
     }
 
+    case ProductsActions.deleteProductSuccess: {
+      const { productId } = action.payload;
+      const filteredArray = state.data.filter((item) => item.id !== productId);
+
+      return {
+        ...state,
+        data: filteredArray,
+      };
+    }
+
     default: {
       return state;
     }

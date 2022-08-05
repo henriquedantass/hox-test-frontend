@@ -3,18 +3,29 @@ import { api } from "../../../services/api";
 import {
   createProductRequest,
   createProductSuccess,
+  deleteProductRequest,
+  deleteProductSuccess,
   getProductsSucess,
 } from "./actions";
-import { CreateProductAPIDTO, ProductsActions, ProductsAPIDTO } from "./types";
+import {
+  CreateProductAPIDTO,
+  DeleteProductAPIDTO,
+  ProductsActions,
+  ProductsAPIDTO,
+} from "./types";
 
 type CreateProductType = ReturnType<typeof createProductRequest>;
+
+type DeleteProductType = ReturnType<typeof deleteProductRequest>;
 
 function* getProducts() {
   try {
     const response: ProductsAPIDTO = yield call(api.get, "/products");
 
     yield put(getProductsSucess(response));
-  } catch {}
+  } catch {
+    console.log("error");
+  }
 }
 
 function* createProduct({ payload }: CreateProductType) {
@@ -27,13 +38,25 @@ function* createProduct({ payload }: CreateProductType) {
       productData
     );
 
-    console.log(response);
-
     yield put(createProductSuccess(response));
-  } catch {}
+  } catch {
+    console.log("error");
+  }
+}
+
+function* deleteProduct({ payload }: DeleteProductType) {
+  const { productId } = payload;
+
+  try {
+    yield call(api.delete, `/products/${productId}`);
+    yield put(deleteProductSuccess(productId));
+  } catch {
+    console.log("error");
+  }
 }
 
 export default all([
   takeLatest(ProductsActions.getProductsRequest, getProducts),
   takeLatest(ProductsActions.createProductsRequest, createProduct),
+  takeLatest(ProductsActions.deleteProductRequest, deleteProduct),
 ]);
