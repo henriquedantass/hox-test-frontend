@@ -20,6 +20,7 @@ const persistConfig = {
   key: "root",
   storage,
   whitelist: ["user"],
+  blacklist: ["products"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

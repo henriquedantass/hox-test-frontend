@@ -1,11 +1,10 @@
-import { Flex, Icon, Text } from "@chakra-ui/react";
-import { ReactNode, useEffect } from "react";
+import { Flex } from "@chakra-ui/react";
+import { ReactNode } from "react";
 import { MdHome, MdLogout, MdShoppingCart } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CMSItem } from "../components/CMS/Item";
 import { Header } from "../components/Header";
-import { IState } from "../store";
 import { signOutRequest } from "../store/modules/user/actions";
 
 interface ICMSTemplate {
@@ -35,12 +34,6 @@ export function CMSTemplate({ children }: ICMSTemplate) {
           <CMSItem
             isSelected={pathname === "/"}
             onClick={() => navigate("/", { replace: true })}
-            title="Home"
-            icon={MdHome}
-          />
-          <CMSItem
-            isSelected={pathname === "/products"}
-            onClick={() => navigate("/products", { replace: true })}
             title="Produtos"
             icon={MdShoppingCart}
           />

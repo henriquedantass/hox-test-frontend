@@ -16,6 +16,16 @@ const products: Reducer<ProductsState> = (state = initialState, action) => {
         isLoaded: true,
       };
     }
+
+    case ProductsActions.createProductsSuccess: {
+      const { response } = action.payload;
+
+      return {
+        ...state,
+        data: [...state.data, response.data],
+      };
+    }
+
     default: {
       return state;
     }

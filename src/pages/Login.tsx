@@ -56,6 +56,7 @@ export function LoginPage() {
           </Text>
           <Stack w="100%" spacing="20px">
             <Input
+              labelColor="#000"
               icon={<MdPerson />}
               label="E-mail"
               placeholder="digite seu e-mail aqui"
@@ -63,6 +64,7 @@ export function LoginPage() {
               error={errors.email}
             />
             <Input
+              labelColor="#000"
               icon={<MdLock />}
               label="Senha"
               placeholder="digite sua senha aqui"

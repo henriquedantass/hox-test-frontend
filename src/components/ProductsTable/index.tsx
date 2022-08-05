@@ -11,7 +11,7 @@ import {
 import { BiTrash } from "react-icons/bi";
 import { MdEdit } from "react-icons/md";
 import { ProductData } from "../../store/modules/products/types";
-import { formatPrice, formattedDate } from "../../utils/Formats";
+import { formatPrice } from "../../utils/Formats";
 
 interface IProductsTable {
   data: ProductData[];
@@ -41,9 +41,9 @@ export const ProductsTable = ({ data }: IProductsTable) => {
         <Tbody>
           {data.map((product) => (
             <Tr key={product.id}>
-              <Td>{product.title}</Td>
-              <Td>{formattedDate(product.due_date)}</Td>
-              <Td>{formattedDate(product.manufacturing_date)}</Td>
+              <Td>{product.name}</Td>
+              <Td>{product.due_date}</Td>
+              <Td>{product.manufacturing_date}</Td>
               <Td>{product.perishable ? "Sim" : "Não"}</Td>
               <Td>{formatPrice(product.price)}</Td>
               <Td>
