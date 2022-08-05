@@ -71,6 +71,22 @@
       "price": 400,
       "name": "Henriquera",
       "id": 9
+    },
+    {
+      "perishable": false,
+      "due_date": "2030-01-06",
+      "manufacturing_date": "2000-08-06",
+      "price": 200,
+      "name": "Vencivel",
+      "id": 10
+    },
+    {
+      "perishable": false,
+      "due_date": "2023-01-01",
+      "manufacturing_date": "2022-08-04",
+      "price": 200,
+      "name": "Teste",
+      "id": 11
     }
   ],
   "users": [

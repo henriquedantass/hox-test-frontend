@@ -12,12 +12,17 @@ import { BiTrash } from "react-icons/bi";
 import { MdEdit } from "react-icons/md";
 import { ProductData } from "../../store/modules/products/types";
 import { formatPrice } from "../../utils/Formats";
+import { format } from "date-fns";
 
 interface IProductsTable {
   data: ProductData[];
 }
 
 export const ProductsTable = ({ data }: IProductsTable) => {
+  function formatDate(date: string) {
+    return format(new Date(date), "MM/dd/yyyy");
+  }
+
   return (
     <TableContainer
       mt="20px"
@@ -42,8 +47,12 @@ export const ProductsTable = ({ data }: IProductsTable) => {
           {data.map((product) => (
             <Tr key={product.id}>
               <Td>{product.name}</Td>
-              <Td>{product.due_date}</Td>
-              <Td>{product.manufacturing_date}</Td>
+              <Td>{formatDate(product.manufacturing_date)}</Td>
+              <Td>
+                {product.due_date === ""
+                  ? "Sem validade"
+                  : formatDate(product.due_date)}
+              </Td>
               <Td>{product.perishable ? "Sim" : "Não"}</Td>
               <Td>{formatPrice(product.price)}</Td>
               <Td>
