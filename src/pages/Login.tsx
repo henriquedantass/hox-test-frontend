@@ -8,6 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { signInRequest } from "../store/modules/user/actions";
 import { IState } from "../store";
 import * as yup from "yup";
+import { UserProps } from "../store/modules/user/types";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const signInFormSchema = yup.object().shape({
   email: yup.string().required("E-mail obrigatório"),
@@ -15,10 +18,9 @@ const signInFormSchema = yup.object().shape({
 });
 
 export function LoginPage() {
-  const errorOnLoggin = useSelector<IState, boolean>(
-    (state) => state.user.logginFailed
-  );
+  const userStatus = useSelector<IState, UserProps>((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -31,6 +33,12 @@ export function LoginPage() {
   const handleSignIn: SubmitHandler<any> = (data) => {
     dispatch(signInRequest(data));
   };
+
+  useEffect(() => {
+    if (userStatus.isLoggedIn) {
+      navigate("/", { replace: true });
+    }
+  }, []);
 
   return (
     <div className="App">
@@ -76,7 +84,7 @@ export function LoginPage() {
           <Button isLoading={isSubmitting} type="submit">
             Entrar
           </Button>
-          {errorOnLoggin && (
+          {userStatus.logginFailed && (
             <Text mt="50px" fontWeight="bold" color="#F05454">
               Credenciais inválidas
             </Text>

@@ -1,10 +1,9 @@
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 import { IState } from "../store";
 import { UserProps } from "../store/modules/user/types";
 
-export const ProtectedRoute = () => {
+export const PrivateRoute = () => {
   const user = useSelector<IState, UserProps>((state) => state.user);
 
   if (!user.isLoggedIn) {
