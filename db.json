@@ -1,36 +1,28 @@
 {
   "products": [
     {
-      "perishable": false,
-      "due_date": "",
-      "manufacturing_date": "2022-08-18",
-      "price": 100,
+      "perishable": true,
+      "due_date": "2022-08-20T03:00:00.000Z",
+      "manufacturing_date": "2022-08-06T03:00:00.000Z",
+      "price": 200,
       "name": "Teste",
       "id": 1
     },
     {
-      "perishable": false,
-      "due_date": "",
-      "manufacturing_date": "1111-11-11",
-      "price": 2222,
-      "name": "Teste",
+      "perishable": true,
+      "due_date": "2023-06-28T03:00:00.000Z",
+      "manufacturing_date": "2022-08-06T03:00:00.000Z",
+      "price": 100,
+      "name": "Teste 2 ",
       "id": 2
     },
     {
       "perishable": false,
-      "due_date": "2030-01-06",
-      "manufacturing_date": "2000-08-06",
-      "price": 200,
-      "name": "Vencivel",
-      "id": 10
-    },
-    {
-      "perishable": false,
-      "due_date": "2023-01-01",
-      "manufacturing_date": "2022-08-04",
-      "price": 200,
-      "name": "Teste",
-      "id": 11
+      "due_date": "",
+      "manufacturing_date": "2022-08-13T03:00:00.000Z",
+      "price": 9000,
+      "name": "Teste 4 ",
+      "id": 3
     }
   ],
   "users": [

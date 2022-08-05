@@ -18,32 +18,47 @@ import { Input } from "../Form/Input";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
 import { createProductRequest } from "../../store/modules/products/actions";
+import { ProductData } from "../../store/modules/products/types";
+import { useState } from "react";
 
 interface ProductsModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialValue?: ProductData | undefined;
 }
 
-export const ProductsModal = ({ isOpen, onClose }: ProductsModalProps) => {
+export const ProductsModal = ({
+  isOpen,
+  onClose,
+  initialValue,
+}: ProductsModalProps) => {
   const dispatch = useDispatch();
+  const [isPerishable, setIsPerishable] = useState(false);
 
   const createProductSchema = yup.object().shape({
     name: yup.string().required("Nome do produto é obrigatório"),
     price: yup.number().positive().required("O preço é obrigatório"),
     manufacturing_date: yup
-      .string()
+      .date()
+      .nullable()
+      .transform((curr, orig) => (orig === "" ? null : curr))
       .required("A data de fabricação obrigatória"),
+
     perishable: yup.boolean(),
-    due_date: yup.string().when("perishable", {
-      is: true,
-      then: yup
-        .string()
-        .min(
-          yup.ref("manufacturing_date"),
-          "A validade não pode ser antes da fabricação"
-        )
-        .required("A data de validade é obrigatória"),
-    }),
+    due_date: yup
+      .date()
+      .nullable()
+      .transform((curr, orig) => (orig === "" ? null : curr))
+      .when("perishable", {
+        is: true,
+        then: yup
+          .date()
+          .min(
+            yup.ref("manufacturing_date"),
+            "A validade não pode ser antes da fabricação"
+          )
+          .required("A data de validade é obrigatória"),
+      }),
   });
 
   const {
@@ -52,6 +67,7 @@ export const ProductsModal = ({ isOpen, onClose }: ProductsModalProps) => {
     reset,
     formState: { errors },
   } = useForm({
+    defaultValues: initialValue,
     resolver: yupResolver(createProductSchema),
   });
 
@@ -88,6 +104,7 @@ export const ProductsModal = ({ isOpen, onClose }: ProductsModalProps) => {
               size="lg"
               colorScheme="green"
               {...register("perishable")}
+              onChange={() => setIsPerishable(!isPerishable)}
             />
           </Flex>
           <HStack w="100%" alignItems="center">
@@ -102,6 +119,7 @@ export const ProductsModal = ({ isOpen, onClose }: ProductsModalProps) => {
               type="date"
               {...register("due_date")}
               error={errors.due_date}
+              isDisabled={!isPerishable}
             />
           </HStack>
         </ModalBody>

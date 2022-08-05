@@ -19,18 +19,14 @@ import { deleteProductRequest } from "../../store/modules/products/actions";
 
 interface IProductsTable {
   data: ProductData[];
+  onDelete: (productId: number) => void;
+  onEdit: (product: ProductData) => void;
 }
 
-export const ProductsTable = ({ data }: IProductsTable) => {
+export const ProductsTable = ({ data, onDelete, onEdit }: IProductsTable) => {
   function formatDate(date: string) {
     return format(new Date(date), "MM/dd/yyyy");
   }
-
-  const dispatch = useDispatch();
-
-  const handleDeleteProduct = useCallback((productId: number) => {
-    dispatch(deleteProductRequest(productId));
-  }, []);
 
   return (
     <TableContainer
@@ -70,9 +66,14 @@ export const ProductsTable = ({ data }: IProductsTable) => {
                   _hover={{ opacity: 0.5 }}
                   m="0px 20px"
                   as={BiTrash}
-                  onClick={() => handleDeleteProduct(product.id)}
+                  onClick={() => onDelete(product.id)}
                 />
-                <Icon cursor="pointer" _hover={{ opacity: 0.5 }} as={MdEdit} />
+                <Icon
+                  onClick={() => onEdit(product)}
+                  cursor="pointer"
+                  _hover={{ opacity: 0.5 }}
+                  as={MdEdit}
+                />
               </Td>
             </Tr>
           ))}
