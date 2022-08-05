@@ -5,22 +5,26 @@ import {
   createProductSuccess,
   deleteProductRequest,
   deleteProductSuccess,
+  editProductRequest,
+  editProductSuccess,
   getProductsSucess,
 } from "./actions";
+
 import {
   CreateProductAPIDTO,
-  DeleteProductAPIDTO,
+  GetProductsAPIDTO,
   ProductsActions,
-  ProductsAPIDTO,
 } from "./types";
 
 type CreateProductType = ReturnType<typeof createProductRequest>;
 
 type DeleteProductType = ReturnType<typeof deleteProductRequest>;
 
+type EditProductType = ReturnType<typeof editProductRequest>;
+
 function* getProducts() {
   try {
-    const response: ProductsAPIDTO = yield call(api.get, "/products");
+    const response: GetProductsAPIDTO = yield call(api.get, "/products");
 
     yield put(getProductsSucess(response));
   } catch {
@@ -55,8 +59,25 @@ function* deleteProduct({ payload }: DeleteProductType) {
   }
 }
 
+function* editProduct({ payload }: EditProductType) {
+  const { productData } = payload;
+
+  try {
+    const response: CreateProductAPIDTO = yield call(
+      api.put,
+      `/products/${productData.id}`,
+      productData
+    );
+
+    yield put(editProductSuccess(response));
+  } catch {
+    console.log("error");
+  }
+}
+
 export default all([
   takeLatest(ProductsActions.getProductsRequest, getProducts),
   takeLatest(ProductsActions.createProductsRequest, createProduct),
   takeLatest(ProductsActions.deleteProductRequest, deleteProduct),
+  takeLatest(ProductsActions.editProductRequest, editProduct),
 ]);

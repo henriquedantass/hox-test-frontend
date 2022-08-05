@@ -13,14 +13,11 @@ import { MdEdit } from "react-icons/md";
 import { ProductData } from "../../store/modules/products/types";
 import { formatPrice } from "../../utils/Formats";
 import { format } from "date-fns";
-import { useCallback } from "react";
-import { useDispatch } from "react-redux";
-import { deleteProductRequest } from "../../store/modules/products/actions";
 
 interface IProductsTable {
   data: ProductData[];
   onDelete: (productId: number) => void;
-  onEdit: (product: ProductData) => void;
+  onEdit: (productId: number) => void;
 }
 
 export const ProductsTable = ({ data, onDelete, onEdit }: IProductsTable) => {
@@ -69,7 +66,7 @@ export const ProductsTable = ({ data, onDelete, onEdit }: IProductsTable) => {
                   onClick={() => onDelete(product.id)}
                 />
                 <Icon
-                  onClick={() => onEdit(product)}
+                  onClick={() => onEdit(product.id)}
                   cursor="pointer"
                   _hover={{ opacity: 0.5 }}
                   as={MdEdit}

@@ -1,8 +1,9 @@
 import {
   CreateProductAPIDTO,
+  GetProductsAPIDTO,
+  ProductAPIDTO,
   ProductData,
   ProductsActions,
-  ProductsAPIDTO,
 } from "./types";
 
 export function getProductsRequest() {
@@ -12,7 +13,7 @@ export function getProductsRequest() {
   };
 }
 
-export function getProductsSucess(response: ProductsAPIDTO) {
+export function getProductsSucess(response: GetProductsAPIDTO) {
   return {
     type: ProductsActions.getProductsSuccess,
     payload: {
@@ -33,6 +34,24 @@ export function createProductRequest(productData: ProductData) {
 export function createProductSuccess(response: CreateProductAPIDTO) {
   return {
     type: ProductsActions.createProductsSuccess,
+    payload: {
+      response,
+    },
+  };
+}
+
+export function editProductRequest(productData: ProductData) {
+  return {
+    type: ProductsActions.editProductRequest,
+    payload: {
+      productData,
+    },
+  };
+}
+
+export function editProductSuccess(response: CreateProductAPIDTO) {
+  return {
+    type: ProductsActions.editProductSuccess,
     payload: {
       response,
     },

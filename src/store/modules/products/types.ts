@@ -7,6 +7,8 @@ export enum ProductsActions {
   createProductsSuccess = "CREATE_PRODUCT_SUCCESS",
   deleteProductRequest = "DELETE_PRODUCT_REQUEST",
   deleteProductSuccess = "DELETE_PRODUCT_SUCCESS",
+  editProductRequest = "EDIT_PRODUCT_REQUEST",
+  editProductSuccess = "EDIT_PRODUCT_SUCCESS",
 }
 
 export type ProductData = {
@@ -21,9 +23,10 @@ export type ProductData = {
 export type ProductsState = {
   data: ProductData[];
   isLoaded: boolean;
+  editSuccess: boolean;
 };
 
-export type ProductsAPIDTO = Promise<
+export type GetProductsAPIDTO = Promise<
   AxiosResponse<{
     data: ProductData[];
   }>
@@ -35,4 +38,4 @@ export type CreateProductAPIDTO = Promise<
   }>
 >;
 
-export type DeleteProductAPIDTO = Promise<AxiosResponse>;
+export type ProductAPIDTO = Promise<AxiosResponse>;

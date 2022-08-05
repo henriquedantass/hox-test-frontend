@@ -2,10 +2,10 @@
   "products": [
     {
       "perishable": true,
-      "due_date": "2022-08-20T03:00:00.000Z",
-      "manufacturing_date": "2022-08-06T03:00:00.000Z",
+      "due_date": "2022-08-26T03:00:00.000Z",
+      "manufacturing_date": "2022-08-20T03:00:00.000Z",
       "price": 200,
-      "name": "Teste",
+      "name": "Teste editado",
       "id": 1
     },
     {

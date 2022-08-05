@@ -6,6 +6,7 @@ import {
 } from "@chakra-ui/react";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { ProductsModal } from "../components/ProductsModal";
 import { ProductsTable } from "../components/ProductsTable";
 import { IState } from "../store";
@@ -18,9 +19,15 @@ import { CMSTemplate } from "../utils/CMSTemplate";
 
 export const Products = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const navigate = useNavigate();
   const [formInitialValue, setFormInitialValue] = useState<
     ProductData | undefined
   >();
+
+  const handleCloseModal = () => {
+    setFormInitialValue(undefined);
+    onClose();
+  };
 
   const products = useSelector<IState, ProductData[]>(
     (state) => state.products.data
@@ -31,9 +38,8 @@ export const Products = () => {
     dispatch(deleteProductRequest(productId));
   }, []);
 
-  const handleEditProduct = useCallback((product: ProductData) => {
-    setFormInitialValue(product);
-    onOpen();
+  const handleEditProduct = useCallback((productId: number) => {
+    navigate(`/edit/${productId}`);
   }, []);
 
   useEffect(() => {
@@ -50,13 +56,13 @@ export const Products = () => {
           <ChakraButton onClick={onOpen}>Adicionar produto</ChakraButton>
         </Flex>
         <ProductsTable
-          onEdit={(product) => handleEditProduct(product)}
+          onEdit={(productId) => handleEditProduct(productId)}
           onDelete={(productId) => handleDeleteProduct(productId)}
           data={products}
         />
         <ProductsModal
           isOpen={isOpen}
-          onClose={onClose}
+          onClose={handleCloseModal}
           initialValue={formInitialValue}
         />
       </Flex>

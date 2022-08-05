@@ -4,6 +4,7 @@ import { ProductsActions, ProductsState } from "./types";
 const initialState = {
   data: [],
   isLoaded: false,
+  editSuccess: false,
 } as ProductsState;
 
 const products: Reducer<ProductsState> = (state = initialState, action) => {
@@ -14,6 +15,7 @@ const products: Reducer<ProductsState> = (state = initialState, action) => {
       return {
         data: response.data,
         isLoaded: true,
+        editSuccess: false,
       };
     }
 
@@ -33,6 +35,13 @@ const products: Reducer<ProductsState> = (state = initialState, action) => {
       return {
         ...state,
         data: filteredArray,
+      };
+    }
+
+    case ProductsActions.editProductSuccess: {
+      return {
+        ...state,
+        editSuccess: true,
       };
     }
 
